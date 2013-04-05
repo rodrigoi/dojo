@@ -8,3 +8,7 @@ before_script:
   - bower install
   - cd ../../../
 script: cd Conways-Game-of-Life/JavaScript/BackboneJS/ && mocha --recursive --reporter list
+
+notifications:
+  email:
+    on_failure: change
