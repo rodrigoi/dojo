@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-	- "0.8"
+  - "0.8"
 before_script:
-	- npm install -g mocha bower
-	- cd Conways-Game-of-Life/JavaScript/BackboneJS/
-	- npm install
-	- bower install
+  - npm install -g mocha bower
+  - cd Conways-Game-of-Life/JavaScript/BackboneJS/
+  - npm install
+  - bower install
 script: cd Conways-Game-of-Life/JavaScript/BackboneJS/ && make test
