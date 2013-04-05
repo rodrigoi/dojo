@@ -7,4 +7,4 @@ before_script:
   - npm install
   - bower install
   - cd ../../../
-script: cd Conways-Game-of-Life/JavaScript/BackboneJS/ && make test
+script: cd Conways-Game-of-Life/JavaScript/BackboneJS/ && mocha --recursive --reporter list
