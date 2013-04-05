@@ -6,4 +6,5 @@ before_script:
   - cd Conways-Game-of-Life/JavaScript/BackboneJS/
   - npm install
   - bower install
+  - cd ../../../
 script: cd Conways-Game-of-Life/JavaScript/BackboneJS/ && make test
