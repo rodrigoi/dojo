@@ -1,0 +1,26 @@
+{
+  "name": "SortingAlgorithms",
+  "version": "0.0.0",
+  "description": "Various implementations of sorting algorithms in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter nyan --watch tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/rodrigoi/dojo"
+  },
+  "keywords": [
+    "dojo",
+    "javascript",
+    "sorting"
+  ],
+  "author": "Rodrigo Iloro",
+  "license": "BSD",
+  "devDependencies": {
+    "mocha": "~1.12.1",
+    "chai": "~1.7.2",
+    "sinon": "~1.7.3",
+    "sinon-chai": "~2.4.0"
+  }
+}
