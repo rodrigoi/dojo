@@ -25,7 +25,7 @@ Write a function:
 
 	function solution(A);
 
-that, given a non-empty zero-indexed array A of N integers, returns the minimal difference that can be achieved.
+that, given a non-empty zero-indexed array ``A`` of ``N`` integers, returns the minimal difference that can be achieved.
 For example, given:
 	
 	A[0] = 3
@@ -36,11 +36,15 @@ For example, given:
 
 the function should return 1, as explained above.
 Assume that:
-N is an integer within the range [2..100,000];
-each element of array A is an integer within the range [−1,000..1,000].
+
+- ``N`` is an integer within the range ``[2..100,000]``;
+- each element of array ``A`` is an integer within the range ``[−1,000..1,000]``.
+
 Complexity:
 
 - expected worst-case time complexity is O(N);
 - expected worst-case space complexity is O(N), beyond input storage (not counting the storage required for input arguments).
 
 Elements of input arrays can be modified.
+
+Results: https://codility.com/demo/results/demoYPEY9A-D53/
