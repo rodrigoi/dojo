@@ -30,6 +30,7 @@
  */
 
 const removeDuplicates = (nums: number[]): number => {
+  //we only need to keep track of the index of the last unique element
   let i = 0;
 
   for (let j = 1; j < nums.length; j++) {
