@@ -16,11 +16,17 @@ const simulate = (
 
     // bail if no more trees burning.
     if (burningTrees === 0) {
-      return [
-        t,
-        forest.reduce((prev, cell) => (cell === 0 ? prev + 1 : prev), 0) /
-          forest.length,
-      ];
+      const [burned, remaing] = forest.reduce(
+        (prev, cell) =>
+          cell === 0
+            ? [prev[0] + 1, prev[1]]
+            : cell === -1
+            ? [prev[0], prev[1] + 1]
+            : prev,
+        [0, 0]
+      );
+
+      return [t, burned / (burned + remaing)];
     }
 
     t++;
@@ -71,6 +77,8 @@ export const simulateVisualization = async (
   burnTime: number,
   catchFire: Array<number>
 ) => {
+  console.time("Simulate Visualization");
+
   const [forest, nextProbableState] = create(
     size,
     density,
@@ -81,6 +89,9 @@ export const simulateVisualization = async (
   const simulateRender = simulateWithRenderAsync(nextProbableState, size);
 
   await simulateRender(forest);
+
+  console.log("");
+  console.timeEnd("Simulate Visualization");
 };
 
 export const simulateAverageBurnTime = (
@@ -90,7 +101,8 @@ export const simulateAverageBurnTime = (
   catchFire: Array<number>,
   runs: number
 ) => {
-  console.log("");
+  console.time("Simulate Average Burn Time");
+
   var bar = new ProgressBar("Running Simulations [:bar] :percent :etas", {
     total: runs,
     complete: "=",
@@ -120,6 +132,8 @@ export const simulateAverageBurnTime = (
   console.log(
     `El tiempo promedio que dura un incendio en extinguirse naturalmente es de ${averageBurnTime} minutos.`
   );
+  console.log("");
+  console.timeEnd("Simulate Average Burn Time");
 };
 
 export const simulateByDensity = (
@@ -127,7 +141,8 @@ export const simulateByDensity = (
   burnTime: number,
   catchFire: Array<number>
 ) => {
-  console.log("");
+  console.time("Simulate Burn Average by Density");
+
   var bar = new ProgressBar(
     "Running Desity Simulations [:bar] :percent :etas",
     {
@@ -174,4 +189,7 @@ export const simulateByDensity = (
     );
     console.log("+----------+----------------+");
   });
+
+  console.log("");
+  console.timeEnd("Simulate Burn Average by Density");
 };
