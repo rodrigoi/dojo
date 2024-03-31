@@ -1,4 +1,4 @@
-# tp-1-only-the-brave
+# burning trees
 
 To install dependencies:
 
