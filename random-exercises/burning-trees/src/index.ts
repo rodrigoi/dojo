@@ -31,8 +31,10 @@ console.write("\x1Bc");
 console.write("\u001B[?25l");
 
 await simulateVisualization(size, forestDensity, burnTime, catchFire);
+console.log("");
 
 simulateAverageBurnTime(size, forestDensity, burnTime, catchFire, 1000);
+console.log("");
 
 simulateByDensity(size, burnTime, catchFire);
 
