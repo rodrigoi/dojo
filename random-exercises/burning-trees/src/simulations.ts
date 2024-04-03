@@ -3,7 +3,10 @@ import ProgressBar from "progress";
 import { create, render } from "./forest";
 
 /**
+ * Simulates the burning of a forest.
  *
+ * @param {function} nextProbableState - A function that takes the current state of the forest and returns the next probable state.
+ * @returns {function} A function that takes the initial state of the forest and the initial time, and returns the time it took for the fire to extinguish and the proportion of the forest that was burned.
  */
 const simulate = (
   nextProbableState: (forest: Array<number>) => Array<number>
@@ -36,6 +39,13 @@ const simulate = (
   return runSimulation;
 };
 
+/**
+ * Simulates the burning of a forest with rendering and returns a function that can run the simulation.
+ *
+ * @param {function} nextProbableState - A function that takes the current state of the forest and returns the next probable state.
+ * @param {number} size - The size of the forest grid.
+ * @returns {function} A function that takes the initial state of the forest and the initial time, and returns a Promise that resolves with the time it took for the fire to extinguish and the proportion of the forest that was burned.
+ */
 const simulateWithRenderAsync = (
   nextProbableState: (forest: Array<number>) => Array<number>,
   size: number
@@ -71,6 +81,15 @@ const simulateWithRenderAsync = (
   return runSimulation;
 };
 
+/**
+ * Simulates the burning of a forest with visualization.
+ *
+ * @param {number} size - The size of the forest grid.
+ * @param {number} density - The probability of a cell to contain a tree at t0.
+ * @param {number} burnTime - Time in minutes that it takes a tree to burn.
+ * @param {Array<number>} catchFire - Probability of a tree to catch fire depending on the number of neighbours that are on fire.
+ * @returns {Promise<void>} A Promise that resolves when the simulation is complete.
+ */
 export const simulateVisualization = async (
   size: number,
   density: number,
@@ -94,6 +113,16 @@ export const simulateVisualization = async (
   console.timeEnd("Simulate Visualization");
 };
 
+/**
+ * Simulates the average burn time of a forest fire.
+ *
+ * @param {number} size - The size of the forest grid.
+ * @param {number} density - The probability of a cell to contain a tree at t0.
+ * @param {number} burnTime - Time in minutes that it takes a tree to burn.
+ * @param {Array<number>} catchFire - Probability of a tree to catch fire depending on the number of neighbours that are on fire.
+ * @param {number} runs - The number of simulations to run.
+ * @returns {void} This function does not return anything. It logs the average burn time to the console.
+ */
 export const simulateAverageBurnTime = (
   size: number,
   density: number,
@@ -136,6 +165,18 @@ export const simulateAverageBurnTime = (
   console.timeEnd("Simulate Average Burn Time");
 };
 
+/**
+ * Simulates the burning of a forest by varying the density of trees.
+ *
+ * @param {number} size - The size of the forest grid.
+ * @param {number} minDensity - The minimum density of trees.
+ * @param {number} maxDensity - The maximum density of trees.
+ * @param {number} step - The step size for increasing the density.
+ * @param {number} burnTime - Time in minutes that it takes a tree to burn.
+ * @param {Array<number>} catchFire - Probability of a tree to catch fire depending on the number of neighbours that are on fire.
+ * @param {number} runs - The number of simulations to run for each density.
+ * @returns {void} This function does not return anything. It logs the average burn time for each density to the console.
+ */
 export const simulateByDensity = (
   size: number,
   burnTime: number,
