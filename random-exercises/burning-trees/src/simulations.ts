@@ -50,28 +50,20 @@ const simulateWithRenderAsync = (
   nextProbableState: (forest: Array<number>) => Array<number>,
   size: number
 ) => {
-  const runSimulation = async (
-    forest: Array<number>,
-    t = 0
-  ): Promise<[number, number]> => {
-    const burningTrees = forest.reduce(
-      (prev, cell) => (cell > 0 ? prev + 1 : prev),
-      0
-    );
-
+  const runSimulation = async (forest: Array<number>, t = 0): Promise<void> => {
     render(size)(forest, t);
     // get a 25ms delay between frames
     await new Promise((resolve) => setTimeout(resolve, 25));
 
+    const burningTrees = forest.reduce(
+      (prev, cell) => (cell > 0 ? prev + 1 : prev),
+      0
+    );
     /**
      * bail if no more trees burning
      */
     if (burningTrees === 0) {
-      return [
-        t,
-        forest.reduce((prev, cell) => (cell === 0 ? prev + 1 : prev), 0) /
-          forest.length,
-      ];
+      return;
     }
 
     t++;
@@ -105,9 +97,7 @@ export const simulateVisualization = async (
     catchFire
   );
 
-  const simulateRender = simulateWithRenderAsync(nextProbableState, size);
-
-  await simulateRender(forest);
+  await simulateWithRenderAsync(nextProbableState, size)(forest);
 
   console.log("");
   console.timeEnd("Simulate Visualization");
@@ -140,21 +130,19 @@ export const simulateAverageBurnTime = (
     clear: true,
   });
 
-  const [forest, nextProbableState] = create(
-    size,
-    density,
-    burnTime,
-    catchFire
-  );
-
-  const simulateAverage = simulate(nextProbableState);
-
   const averageBurnTime =
     Array(runs)
       .fill(0)
       .map(() => {
+        const [forest, nextProbableState] = create(
+          size,
+          density,
+          burnTime,
+          catchFire
+        );
+
         bar.tick();
-        return simulateAverage(forest, 0);
+        return simulate(nextProbableState)(forest, 0);
       })
       .reduce((prev, [curr]) => prev + curr, 0) / runs;
 
@@ -207,10 +195,9 @@ export const simulateByDensity = (
               burnTime,
               catchFire
             );
-            const simulateAverage = simulate(nextProbableState);
 
             bar.tick();
-            return simulateAverage(forest, 0);
+            return simulate(nextProbableState)(forest, 0);
           })
           .reduce((prev, [_, curr]) => prev + curr, 0) / 100;
 
