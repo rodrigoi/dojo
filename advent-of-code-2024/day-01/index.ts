@@ -1,4 +1,4 @@
-const input = await Bun.file("input.txt").text();
+const input = await Bun.file("./day-01/input.txt").text();
 
 const numbers = input
   .trim()

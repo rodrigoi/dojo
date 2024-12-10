@@ -25,7 +25,7 @@ const isValidSequence = (report: number[]) => {
   return increasing || decreasing;
 };
 
-const input = await Bun.file("input.txt").text();
+const input = await Bun.file("./day-02/input.txt").text();
 
 const reports = input
   .trim()
