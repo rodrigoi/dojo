@@ -1,0 +1,9 @@
+{
+  "name": "dojo",
+  "version": "1.0.0",
+  "workspaces": [
+    "advent-of-code-2024",
+    "random-exercises/burning-trees",
+    "leetcode"
+  ]
+}
