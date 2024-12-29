@@ -25,7 +25,18 @@ const isValidSequence = (report: number[]) => {
   return increasing || decreasing;
 };
 
-const input = await Bun.file("./day-02/input.txt").text();
+const isValidSequenceWithTolerance = (report: number[]) => {
+  if (isValidSequence(report)) return true;
+
+  for (let i = 0; i < report.length; i++) {
+    let newLevels = report.slice(0, i).concat(report.slice(i + 1));
+    if (isValidSequence(newLevels)) return true;
+  }
+
+  return false;
+};
+
+const input = await Bun.file("./advent-of-code-2024/day-02/input.txt").text();
 
 const reports = input
   .trim()
@@ -35,5 +46,11 @@ const reports = input
   });
 
 const validSequences = reports.filter(isValidSequence);
+const validSequencesWithTolerance = reports.filter(
+  isValidSequenceWithTolerance
+);
 
 console.log(`Number of valid sequences: ${validSequences.length}`);
+console.log(
+  `Number of valid sequences with tolerance: ${validSequencesWithTolerance.length}`
+);
