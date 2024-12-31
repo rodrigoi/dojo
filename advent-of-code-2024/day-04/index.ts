@@ -42,6 +42,13 @@ const directions = [
   [1, 1, 2, 2, 3, 3], // bottom right
 ];
 
+const diagonalPairs = [
+  // [topLeft_x, topLeft_y, bottomRight_x, bottomRight_y]
+  [-1, -1, 1, 1],
+  // [topRight_x, topRight_y, bottomLeft_x, bottomLeft_y]
+  [1, -1, -1, 1],
+];
+
 const [xmasCount, masCount] = [...grid].reduce(
   (acc: number[], _, idx: number) => {
     if (grid[idx] === "X") {
@@ -71,16 +78,28 @@ const [xmasCount, masCount] = [...grid].reduce(
       if (
         isInBounds(size)(x - 1, y - 1) &&
         isInBounds(size)(x + 1, y + 1) &&
-        ((grid[coordinatesToIndex(size)(x - 1, y - 1)] === "M" &&
-          grid[coordinatesToIndex(size)(x + 1, y + 1)] === "S") ||
-          (grid[coordinatesToIndex(size)(x - 1, y - 1)] === "S" &&
-            grid[coordinatesToIndex(size)(x + 1, y + 1)] === "M")) &&
-        ((grid[coordinatesToIndex(size)(x + 1, y - 1)] === "M" &&
-          grid[coordinatesToIndex(size)(x - 1, y + 1)] === "S") ||
-          (grid[coordinatesToIndex(size)(x + 1, y - 1)] === "S" &&
-            grid[coordinatesToIndex(size)(x - 1, y + 1)] === "M"))
+        isInBounds(size)(x + 1, y - 1) &&
+        isInBounds(size)(x - 1, y + 1)
       ) {
-        acc[1]++;
+        const positions = diagonalPairs.map(([dx1, dy1, dx2, dy2]) => ({
+          pos1: coordinatesToIndex(size)(x + dx1, y + dy1),
+          pos2: coordinatesToIndex(size)(x + dx2, y + dy2),
+        }));
+
+        // Check if either diagonal has M-S or S-M pattern
+        const diagonal1Valid =
+          (grid[positions[0].pos1] === "M" &&
+            grid[positions[0].pos2] === "S") ||
+          (grid[positions[0].pos1] === "S" && grid[positions[0].pos2] === "M");
+
+        const diagonal2Valid =
+          (grid[positions[1].pos1] === "M" &&
+            grid[positions[1].pos2] === "S") ||
+          (grid[positions[1].pos1] === "S" && grid[positions[1].pos2] === "M");
+
+        if (diagonal1Valid && diagonal2Valid) {
+          acc[1]++;
+        }
       }
     }
 
