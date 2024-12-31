@@ -48,84 +48,20 @@ const [xmasCount, masCount] = [...grid].reduce(
       // if the cell is X, get its coordinates
       const [x, y] = indexToCoordinates(size)(idx);
 
-      // check top
-      if (
-        isInBounds(size)(x, y - 3) &&
-        grid[coordinatesToIndex(size)(x, y - 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x, y - 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x, y - 3)] === "S"
-      ) {
-        acc[0]++;
-      }
+      for (const direction of directions) {
+        const [dx1, dy1, dx2, dy2, dx3, dy3] = direction;
+        const endX = x + dx3;
+        const endY = y + dy3;
 
-      // check bottom
-      if (
-        isInBounds(size)(x, y + 3) &&
-        grid[coordinatesToIndex(size)(x, y + 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x, y + 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x, y + 3)] === "S"
-      ) {
-        acc[0]++;
-      }
+        if (isInBounds(size)(endX, endY)) {
+          const pos1 = coordinatesToIndex(size)(x + dx1, y + dy1);
+          const pos2 = coordinatesToIndex(size)(x + dx2, y + dy2);
+          const pos3 = coordinatesToIndex(size)(x + dx3, y + dy3);
 
-      // check left
-      if (
-        isInBounds(size)(x - 3, y) &&
-        grid[coordinatesToIndex(size)(x - 1, y)] === "M" &&
-        grid[coordinatesToIndex(size)(x - 2, y)] === "A" &&
-        grid[coordinatesToIndex(size)(x - 3, y)] === "S"
-      ) {
-        acc[0]++;
-      }
-
-      // check right
-      if (
-        isInBounds(size)(x + 3, y) &&
-        grid[coordinatesToIndex(size)(x + 1, y)] === "M" &&
-        grid[coordinatesToIndex(size)(x + 2, y)] === "A" &&
-        grid[coordinatesToIndex(size)(x + 3, y)] === "S"
-      ) {
-        acc[0]++;
-      }
-
-      // check top left
-      if (
-        isInBounds(size)(x - 3, y - 3) &&
-        grid[coordinatesToIndex(size)(x - 1, y - 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x - 2, y - 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x - 3, y - 3)] === "S"
-      ) {
-        acc[0]++;
-      }
-
-      // check top right
-      if (
-        isInBounds(size)(x + 3, y - 3) &&
-        grid[coordinatesToIndex(size)(x + 1, y - 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x + 2, y - 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x + 3, y - 3)] === "S"
-      ) {
-        acc[0]++;
-      }
-
-      // check bottom left
-      if (
-        isInBounds(size)(x - 3, y + 3) &&
-        grid[coordinatesToIndex(size)(x - 1, y + 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x - 2, y + 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x - 3, y + 3)] === "S"
-      ) {
-        acc[0]++;
-      }
-
-      // check bottom right
-      if (
-        isInBounds(size)(x + 3, y + 3) &&
-        grid[coordinatesToIndex(size)(x + 1, y + 1)] === "M" &&
-        grid[coordinatesToIndex(size)(x + 2, y + 2)] === "A" &&
-        grid[coordinatesToIndex(size)(x + 3, y + 3)] === "S"
-      ) {
-        acc[0]++;
+          if (grid[pos1] === "M" && grid[pos2] === "A" && grid[pos3] === "S") {
+            acc[0]++;
+          }
+        }
       }
     }
 
