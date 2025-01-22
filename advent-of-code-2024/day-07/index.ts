@@ -10,7 +10,7 @@ export const parseEquations = (input: string) => {
         values: numbers.trim().split(" ").map(Number),
       };
     })
-    .filter(Boolean);
+    .filter((equation) => equation !== null);
 };
 
 const operations = [
@@ -54,5 +54,6 @@ if (import.meta.main) {
   const input = await Bun.file("./advent-of-code-2024/day-07/input.txt").text();
   const equations = parseEquations(input);
   const result = calculateCalibrationResults(equations);
-  console.log(result);
+
+  console.log(`The total calibration result is ${result}`);
 }
