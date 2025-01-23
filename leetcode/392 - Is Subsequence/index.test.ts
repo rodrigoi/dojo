@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-import { isSubsequence } from ".";
+import { isSubsequence } from "./index";
 
 /**
  * https://leetcode.com/problems/is-subsequence/
