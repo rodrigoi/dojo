@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 
-import { mergeAlternately } from ".";
+import { mergeAlternately } from "./index";
 
 /**
  * https://leetcode.com/problems/merge-strings-alternately/

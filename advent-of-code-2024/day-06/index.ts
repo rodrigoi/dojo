@@ -117,7 +117,10 @@ export const findLoopPositions = (
 
   return loopCount;
 };
-const partTwoResult = findLoopPositions(grid, size, start, direction);
 
-console.log(`Positions the guard visited: ${partOneResult.visitedCount}`);
-console.log(`Possible positions for creating a loop: ${partTwoResult}`);
+if (import.meta.main) {
+  const partTwoResult = findLoopPositions(grid, size, start, direction);
+
+  console.log(`Positions the guard visited: ${partOneResult.visitedCount}`);
+  console.log(`Possible positions for creating a loop: ${partTwoResult}`);
+}
