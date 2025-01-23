@@ -2,8 +2,8 @@ import { describe, expect, test } from "bun:test";
 import {
   calculateCalibrationResults,
   getPossibleResults,
+  getStandardOperations,
   isValidEquation,
-  operations,
   parseEquations,
 } from ".";
 
@@ -19,6 +19,8 @@ const input = `190: 10 19
 `;
 
 describe("Day 7: Bridge Repair", () => {
+  const operations = getStandardOperations();
+
   test("should parse input string into an array of equations", () => {
     const equations = parseEquations(input);
     expect(equations).toEqual([
@@ -35,21 +37,21 @@ describe("Day 7: Bridge Repair", () => {
   });
 
   test("should validate if an equation is valid for equations with two values", () => {
-    expect(isValidEquation(operations)(190, [10, 19])).toBe(true);
-    expect(isValidEquation(operations)(190, [10, 20])).toBe(false);
+    expect(isValidEquation(190, [10, 19], operations)).toBe(true);
+    expect(isValidEquation(190, [10, 20], operations)).toBe(false);
   });
 
   test("should validate if an equation is valid for equations with n values", () => {
-    expect(isValidEquation(operations)(3267, [81, 40, 27])).toBe(true);
-    expect(isValidEquation(operations)(3267, [81, 40, 28])).toBe(false);
+    expect(isValidEquation(3267, [81, 40, 27], operations)).toBe(true);
+    expect(isValidEquation(3267, [81, 40, 28], operations)).toBe(false);
   });
 
   test("should get possible results for an equation with two values", () => {
-    expect(getPossibleResults(operations)([10, 19])).toEqual([29, 190]);
+    expect(getPossibleResults([10, 19], operations)).toEqual([29, 190]);
   });
 
   test("should get possible results for an equation with three values", () => {
-    expect(getPossibleResults(operations)([81, 40, 27])).toEqual([
+    expect(getPossibleResults([81, 40, 27], operations)).toEqual([
       148, 3267, 3267, 87480,
     ]);
   });
@@ -66,7 +68,7 @@ describe("Day 7: Bridge Repair", () => {
       { result: 21037, values: [9, 7, 18, 13] },
       { result: 292, values: [11, 6, 16, 20] },
     ];
-    const result = calculateCalibrationResults(operations, input);
+    const result = calculateCalibrationResults(input, operations);
     expect(result).toBe(3749);
   });
 
@@ -82,10 +84,10 @@ describe("Day 7: Bridge Repair", () => {
       { result: 21037, values: [9, 7, 18, 13] },
       { result: 292, values: [11, 6, 16, 20] },
     ];
-    const result = calculateCalibrationResults(
-      [...operations, (a, b) => parseInt(`${a}${b}`)],
-      input
-    );
+    const result = calculateCalibrationResults(input, [
+      ...operations,
+      (a, b) => parseInt(`${a}${b}`),
+    ]);
     expect(result).toBe(11387);
   });
 });
