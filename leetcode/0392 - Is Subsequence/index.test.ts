@@ -7,7 +7,7 @@ import { isSubsequence } from "./index";
  * Difficulty: Easy
  */
 
-describe("Is Subsequence", () => {
+describe("0392 - Is Subsequence", () => {
   test("should return true when given s = 'abc', t = 'ahbgdc'", () => {
     expect(isSubsequence("abc", "ahbgdc")).toBe(true);
   });

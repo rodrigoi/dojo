@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import isPalindrome from "./index";
 
-describe("Palindrome", () => {
+describe("0009 - Palindrome", () => {
   test("should return true if the number is a palindrome", () => {
     expect(isPalindrome(121)).toEqual(true);
   });

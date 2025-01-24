@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { twoSum } from ".";
 
-describe("Two Sum", () => {
+describe("0001 - Two Sum", () => {
   test("should return [0, 1] when given nums = [2, 7, 11, 15], target = 9", () => {
     expect(twoSum([2, 7, 11, 15], 9)).toEqual([0, 1]);
   });

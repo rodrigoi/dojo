@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { lengthOfLongestSubstring } from ".";
 
-describe("Longest Substring Without Repeating Characters", () => {
+describe("0003 - Longest Substring Without Repeating Characters", () => {
   test("should return 3 when given 'abcabcbb'", () => {
     expect(lengthOfLongestSubstring("abcabcbb")).toEqual(3);
   });

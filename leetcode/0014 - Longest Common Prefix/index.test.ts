@@ -1,8 +1,7 @@
-import { describe, test, expect } from "bun:test";
-
+import { describe, expect, test } from "bun:test";
 import { longestCommonPrefix, longestCommonPrefixBinarySearch } from "./index";
 
-describe("Longest Common Prefix", () => {
+describe("0014 - Longest Common Prefix", () => {
   test("should return fl when given [flower, flow, flight]", () => {
     expect(longestCommonPrefix(["flower", "flow", "flight"])).toEqual("fl");
   });
@@ -12,7 +11,7 @@ describe("Longest Common Prefix", () => {
   });
 });
 
-describe("Longest Common Prefix Binary Search", () => {
+describe("0014 - Longest Common Prefix Binary Search", () => {
   test("should return fl when given [flower, flow, flight]", () => {
     expect(
       longestCommonPrefixBinarySearch(["flower", "flow", "flight"])

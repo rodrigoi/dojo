@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { findMedianSortedArrays } from ".";
 
-describe("Median of Two Sorted Arrays", () => {
+describe("0004 - Median of Two Sorted Arrays", () => {
   test("should return 2.0 when given nums1 = [1, 3] and nums2 = [2]", () => {
     expect(findMedianSortedArrays([1, 3], [2])).toEqual(2.0);
   });

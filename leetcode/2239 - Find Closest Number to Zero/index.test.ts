@@ -7,7 +7,7 @@ import { findClosestNumberToZero } from "./index";
  * Difficulty: Easy
  */
 
-describe("Find Closest Number to Zero", () => {
+describe("2239 - Find Closest Number to Zero", () => {
   test("should return 1 when given nums = [-4, -2, 1, 4, 8]", () => {
     expect(findClosestNumberToZero([-4, -2, 1, 4, 8])).toBe(1);
   });

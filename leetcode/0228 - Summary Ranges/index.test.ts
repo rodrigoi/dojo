@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { findSummaryRanges } from "./index";
 
-describe("Summary Ranges", () => {
+describe("0228 - Summary Ranges", () => {
   test("should return correct number of ranges for  [0, 1]", () => {
     const input = [0, 1];
     const result = findSummaryRanges(input);

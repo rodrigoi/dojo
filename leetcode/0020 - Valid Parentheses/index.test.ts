@@ -1,8 +1,8 @@
-import { describe, test, expect } from "bun:test";
+import { describe, expect, test } from "bun:test";
 
 import { isValid } from "./index";
 
-describe("Valid Parentheses", () => {
+describe("0020 - Valid Parentheses", () => {
   test("should return true when given ()", () => {
     expect(isValid("()")).toEqual(true);
   });

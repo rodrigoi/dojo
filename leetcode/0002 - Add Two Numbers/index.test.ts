@@ -1,8 +1,7 @@
+import { ListNode, addTwoNumbers } from ".";
 import { describe, expect, test } from "bun:test";
 
-import { addTwoNumbers, ListNode } from ".";
-
-describe("Add Two Numbers", () => {
+describe("0002 - Add Two Numbers", () => {
   test("should return [7, 0, 8] when given [2, 4, 3] and [5, 6, 4]", () => {
     const listNode1 = new ListNode(2, new ListNode(4, new ListNode(3)));
     const listNode2 = new ListNode(5, new ListNode(6, new ListNode(4)));

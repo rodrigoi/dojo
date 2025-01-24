@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { longestPalindrome } from ".";
 
-describe("Longest Palindromic Substring", () => {
+describe("0005 - Longest Palindromic Substring", () => {
   test("should return 'bab' when given 'babad'", () => {
     expect(longestPalindrome("babad")).toEqual("bab");
   });

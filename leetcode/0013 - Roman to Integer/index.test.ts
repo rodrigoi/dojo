@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import romanToInt from "./index";
 
-describe("Roman to Integer", () => {
+describe("0013 - Roman to Integer", () => {
   test("should return 1 when given I", () => {
     expect(romanToInt("I")).toEqual(1);
   });

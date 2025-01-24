@@ -7,7 +7,7 @@ import { mergeAlternately } from "./index";
  * Difficulty: Easy
  */
 
-describe("Merge Strings Alternately", () => {
+describe("1768 - Merge Strings Alternately", () => {
   test("should return 'apbqcr' when given word1 = 'abc', word2 = 'pqr'", () => {
     expect(mergeAlternately("abc", "pqr")).toBe("apbqcr");
   });

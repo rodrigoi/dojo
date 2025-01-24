@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import { productExceptSelf } from "./index";
 
-describe("Product of Array expect Self", () => {
+describe("0238 - Product of Array expect Self", () => {
   test("should return correct product for [1]", () => {
     const input = [1];
     const result = productExceptSelf(input);
